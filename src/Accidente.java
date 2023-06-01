@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Accidente {
 
     private int identAcci, rutCliente;
@@ -16,12 +18,12 @@ public class Accidente {
         consecuencias = "sin consecuencias";
     }
 
-    public Accidente(int identAcci, int rutCliente, String dia, String hora, String lugar, String origen, String consecuencias){
+    public Accidente(int identAcci, int rutCliente, String dia, String hora, String lugar, String origen, String consecuencias, Scanner sc){
         this.identAcci = identAcci;
         this.rutCliente = rutCliente;
         setDia(dia);
         setHora(hora);
-        setLugar(lugar);
+        setLugar(lugar, sc);
         setOrigen(origen);
         setConsecuencias(consecuencias);
     }
@@ -72,12 +74,14 @@ public class Accidente {
         return lugar;
     }
 
-    public void setLugar(String lugar) {
+    public void setLugar(String lugar, Scanner sc) {
         do{
             if(lugar.length() >= 10 && lugar.length() <= 50)
                 this.lugar = lugar;
-            else
+            else {
                 System.out.println("Error, lugar mal ingresado, debe tener entre 10 y 50 caracteres");
+                lugar = sc.nextLine();
+            }
         }while(lugar.length() < 10 || lugar.length() > 50);
     }
 

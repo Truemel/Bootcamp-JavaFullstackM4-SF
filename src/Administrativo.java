@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Administrativo extends Usuario {
 
     private String area; //mínimo 5 caracteres, máximo 20
@@ -9,9 +11,9 @@ public class Administrativo extends Usuario {
         expPrevia = "0";
     }
 
-    public Administrativo(String area, String expPrevia, int run, String nombre, String fechaNaci){
-        super(run, nombre, fechaNaci);
-        setArea(area);
+    public Administrativo(String area, String expPrevia, int run, String nombre, String fechaNaci, Scanner sc){
+        super(run, nombre, fechaNaci, sc);
+        setArea(area, sc);
         setExpPrevia(expPrevia);
     }
 
@@ -26,12 +28,14 @@ public class Administrativo extends Usuario {
         return area;
     }
 
-    public void setArea(String area) {
+    public void setArea(String area, Scanner sc) {
         do{
             if(area.length() >= 5 && area.length() <= 20)
                 this.area = area;
-            else
+            else {
                 System.out.println("Error, area mal ingresada, debe tener entre 5 y 20 caracteres");
+                area = sc.nextLine();
+            }
         }while (area.length() < 5 || area.length() > 20);
     }
 

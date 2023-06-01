@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public abstract class Usuario implements Asesoria {
 
@@ -12,10 +13,10 @@ public abstract class Usuario implements Asesoria {
         fechaNaci = "01/01/0001";
     }
 
-    public Usuario(int run, String nombre, String fechaNaci){
-        setNombre(nombre);
+    public Usuario(int run, String nombre, String fechaNaci, Scanner sc){
+        setNombre(nombre, sc);
         setRun(run);
-        setFechaNaci(fechaNaci);
+        setFechaNaci(fechaNaci, sc);
     }
 
     @Override
@@ -33,13 +34,14 @@ public abstract class Usuario implements Asesoria {
         return fechaNaci;
     }
 
-    public void setFechaNaci(String fechaNaci) {
+    public void setFechaNaci(String fechaNaci, Scanner sc) {
         do{
             if(fechaNaci.matches("^[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}$"))
                 this.fechaNaci = fechaNaci;
             else {
                 System.out.println("Error, fecha fué mal ingresada,debe seguir este formato 01/01/2001");
                 //this.fechaNaci = "01/01/2001";
+                fechaNaci = sc.nextLine();
             }
         }while(!fechaNaci.matches("^[0-9]{2}\\/[0-9]{2}\\/[0-9]{4}$"));
     }
@@ -61,13 +63,14 @@ public abstract class Usuario implements Asesoria {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public void setNombre(String nombre, Scanner sc) {
         do{
             if(nombre.length() >= 10 && nombre.length() <= 50)
                 this.nombre = nombre;
             else{
                 System.out.println("Error, nombre mal ingresado, debe tener entre 10 y 50 caracteres");
                 //this.nombre = "abcdefghij";
+                nombre = sc.nextLine();
             }
         }while(nombre.length() < 10 || nombre.length() > 50);
     }

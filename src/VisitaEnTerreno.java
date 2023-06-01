@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class VisitaEnTerreno {
 
     private int identVisita;
@@ -15,12 +17,12 @@ public class VisitaEnTerreno {
         comentarios = "";
     }
 
-    public  VisitaEnTerreno(int identVisita, int rutCliente, String dia, String hora, String lugar, String comentarios){
+    public  VisitaEnTerreno(int identVisita, int rutCliente, String dia, String hora, String lugar, String comentarios, Scanner sc){
         this.identVisita = identVisita;
         this.rutCliente = rutCliente;
         setDia(dia);
         setHora(hora);
-        setLugar(lugar);
+        setLugar(lugar, sc);
         setComentarios(comentarios);
     }
 
@@ -70,12 +72,14 @@ public class VisitaEnTerreno {
         return lugar;
     }
 
-    public void setLugar(String lugar) {
+    public void setLugar(String lugar, Scanner sc) {
         do{
             if(lugar.length() >= 10 && lugar.length() <= 50)
                 this.lugar = lugar;
-            else
+            else {
                 System.out.println("Error, lugar mal ingresado, debe tener entre 10 y 50 caracteres");
+                lugar = sc.nextLine();
+            }
         }while(lugar.length() < 10 || lugar.length() > 50);
     }
 

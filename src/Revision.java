@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Revision {
 
     private int identRev;
@@ -13,12 +15,12 @@ public class Revision {
         estado = 1;
     }
 
-    public Revision(int identRev, int identVisita, String nombreAlusivo, String detalle, int estado){
+    public Revision(int identRev, int identVisita, String nombreAlusivo, String detalle, int estado, Scanner sc){
         this.identRev = identRev;
         this.identVisita = identVisita;
-        setNombreAlusivo(nombreAlusivo);
+        setNombreAlusivo(nombreAlusivo, sc);
         setDetalle(detalle);
-        setEstado(estado);
+        setEstado(estado, sc);
     }
 
     public int getIdentRev() {
@@ -41,12 +43,14 @@ public class Revision {
         return nombreAlusivo;
     }
 
-    public void setNombreAlusivo(String nombreAlusivo) {
+    public void setNombreAlusivo(String nombreAlusivo, Scanner sc) {
         do{
             if(nombreAlusivo.length() >= 10 && nombreAlusivo.length() <= 50)
                 this.nombreAlusivo = nombreAlusivo;
-            else
+            else {
                 System.out.println("Error, nombre alusivo mal ingresado, debe tener entre 10 y 50 caracteres");
+                nombreAlusivo = sc.nextLine();
+            }
         }while(nombreAlusivo.length() < 10 || nombreAlusivo.length() > 50);
     }
 
@@ -67,13 +71,14 @@ public class Revision {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(int estado, Scanner sc) {
         do{
             if(estado >= 1 && estado <= 3)
                 this.estado = estado;
             else {
                 System.out.println("Error, estado mal ingresado, debe ingresar un valor de 1 a 3");
                 System.out.println("1 (sin problemas), 2 (con observaciones), 3 (no aprueba)");
+                estado = sc.nextInt();
             }
         }while(estado < 1 || estado > 3);
     }

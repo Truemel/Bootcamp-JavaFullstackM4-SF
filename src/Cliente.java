@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Cliente extends Usuario {
 
     private int edad; //número mayor o igual a cero, y menor a 150
@@ -24,17 +26,17 @@ public class Cliente extends Usuario {
     }
 
     public Cliente(int edad, int rut, String direccion, String comuna, int sysSalud, String afp, int telefono,
-                   String nombres, String apellidos, int run, String nombre, String fechaNaci){
-        super(run, nombre, fechaNaci);
+                   String nombres, String apellidos, int run, String nombre, String fechaNaci, Scanner sc){
+        super(run, nombre, fechaNaci, sc);
         this.telefono = telefono;
         setComuna(comuna);
         setAfp(afp);
         setRut(rut);
-        setNombres(nombres);
-        setApellidos(apellidos);
-        setEdad(edad);
+        setNombres(nombres, sc);
+        setApellidos(apellidos, sc);
+        setEdad(edad, sc);
         setDireccion(direccion);
-        setSysSalud(sysSalud);
+        setSysSalud(sysSalud, sc);
     }
 
     public String obtenerNombre(){
@@ -52,13 +54,14 @@ public class Cliente extends Usuario {
         return nombres;
     }
 
-    public void setNombres(String nombres) {
+    public void setNombres(String nombres, Scanner sc) {
         do{
             if(nombres.length() >= 5 && nombres.length() <= 30)
                 this.nombres = nombres;
             else {
                 System.out.println("Error, nombres mal ingresado, debe tener entre 5 y 30 caracteres");
                 //this.nombres = "fghij";
+                nombres = sc.nextLine();
             }
         }while (nombres.length() < 5 || nombres.length() > 30);
     }
@@ -67,12 +70,14 @@ public class Cliente extends Usuario {
         return sysSalud;
     }
 
-    public void setSysSalud(int sysSalud) {
+    public void setSysSalud(int sysSalud, Scanner sc) {
         do{
             if(sysSalud == 1 || sysSalud == 2)
                 this.sysSalud = sysSalud;
-            else
+            else {
                 System.out.println("Error, sistema salud mal ingresado, valor debe ser 1 (fonasa) o 2 (isapre)");
+                sysSalud = sc.nextInt();
+            }
         }while(sysSalud != 1 && sysSalud != 2);
     }
 
@@ -127,13 +132,14 @@ public class Cliente extends Usuario {
         return apellidos;
     }
 
-    public void setApellidos(String apellidos) {
+    public void setApellidos(String apellidos, Scanner sc) {
         do{
             if(apellidos.length() >= 5 && apellidos.length() <= 30)
                 this.apellidos = apellidos;
             else {
                 System.out.println("Error, apellidos mal ingresado, debe tener entre 5 y 30 caracteres");
                 //this.apellidos = "fghij";
+                apellidos = sc.nextLine();
             }
         }while (apellidos.length() < 5 || apellidos.length() > 30);
     }
@@ -149,13 +155,14 @@ public class Cliente extends Usuario {
         return edad;
     }
 
-    public void setEdad(int edad) {
+    public void setEdad(int edad, Scanner sc) {
         do{
             if(edad >= 0 && edad < 150)
                 this.edad = edad;
             else {
                 System.out.println("Error, edad mal ingresada, valor debe estar entre 0 y 149");
                 //this.edad = 1;
+                edad = sc.nextInt();
             }
         }while(edad < 0 || edad >= 150);
     }

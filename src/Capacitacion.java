@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Capacitacion {
 
     private int ident;
@@ -18,14 +20,15 @@ public class Capacitacion {
         cantAsist = 0;
     }
 
-    public Capacitacion(int ident, int rutCliente, String dia, String hora, String lugar, String duracion, int cantAsist){
+    public Capacitacion(int ident, int rutCliente, String dia, String hora, String lugar, String duracion,
+                        int cantAsist, Scanner sc){
         this.ident = ident;
         this.rutCliente = rutCliente;
         setDia(dia);
         setHora(hora);
-        setLugar(lugar);
+        setLugar(lugar, sc);
         setDuracion(duracion);
-        setCantAsist(cantAsist);
+        setCantAsist(cantAsist, sc);
     }
 
     public String mostrarDetalle(){
@@ -79,12 +82,14 @@ public class Capacitacion {
         return lugar;
     }
 
-    public void setLugar(String lugar) {
+    public void setLugar(String lugar, Scanner sc) {
         do{
             if(lugar.length() >= 10 && lugar.length() <= 50)
                 this.lugar = lugar;
-            else
+            else {
                 System.out.println("Error, lugar mal ingresado, debe tener entre 10 y 50 caracteres");
+                lugar = sc.nextLine();
+            }
         }while(lugar.length() < 10 || lugar.length() > 50);
     }
 
@@ -105,12 +110,14 @@ public class Capacitacion {
         return cantAsist;
     }
 
-    public void setCantAsist(int cantAsist) {
+    public void setCantAsist(int cantAsist, Scanner sc) {
         do{
             if(cantAsist < 1000)
                 this.cantAsist = cantAsist;
-            else
+            else {
                 System.out.println("Error, cantidad de asistentes mal ingresada, valor debe ser menor a 1000");
+                cantAsist = sc.nextInt();
+            }
         }while (cantAsist >= 1000);
     }
 

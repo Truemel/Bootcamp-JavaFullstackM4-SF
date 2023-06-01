@@ -4,7 +4,7 @@ public class Principal {
 
     public static void main(String[] args) {
         Contenedor contenedor = new Contenedor();
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
         menu(sc, contenedor);
         sc.close();
     }
@@ -60,9 +60,9 @@ public class Principal {
 
     public static void addUsuarioData(Usuario user, Scanner sc){
         System.out.println("Ingresar nombre de usuario");
-        user.setNombre(sc.next());
+        user.setNombre(sc.nextLine(), sc);
         System.out.println("Ingresar fecha de nacimiento");
-        user.setFechaNaci(sc.next());
+        user.setFechaNaci(sc.nextLine(), sc);
         System.out.println("Ingresar run del usuario");
         user.setRun(sc.nextInt());
     }
@@ -71,21 +71,21 @@ public class Principal {
         Cliente cliente = new Cliente();
         addUsuarioData(cliente, sc);
         System.out.println("Ingresar edad");
-        cliente.setEdad(sc.nextInt());
+        cliente.setEdad(sc.nextInt(), sc);
         System.out.println("Ingresar rut cliente");
         cliente.setRut(sc.nextInt());
         System.out.println("Ingresar nombres del cliente");
-        cliente.setNombres(sc.next());
+        cliente.setNombres(sc.nextLine(), sc);
         System.out.println("Ingresar apellidos del cliente");
-        cliente.setApellidos(sc.next());
+        cliente.setApellidos(sc.nextLine(), sc);
         System.out.println("Ingresar comuna");
-        cliente.setComuna(sc.next());
+        cliente.setComuna(sc.nextLine());
         System.out.println("Ingresar dirección");
-        cliente.setDireccion(sc.next());
+        cliente.setDireccion(sc.nextLine());
         System.out.println("Ingresar afp");
-        cliente.setAfp(sc.next());
+        cliente.setAfp(sc.nextLine());
         System.out.println("Ingresar sistema de salud (1) Fonasa, (2) Isapre");
-        cliente.setSysSalud(sc.nextInt());
+        cliente.setSysSalud(sc.nextInt(), sc);
         System.out.println("Ingresar telefono");
         cliente.setTelefono(sc.nextInt());
         cont.almacenarCliente(cliente);
@@ -95,9 +95,9 @@ public class Principal {
         Profesional profe = new Profesional();
         addUsuarioData(profe, sc);
         System.out.println("Ingresar título");
-        profe.setTitulo(sc.next());
+        profe.setTitulo(sc.nextLine(), sc);
         System.out.println("Ingresar fecha de ingreso");
-        profe.setFechaIngreso(sc.next());
+        profe.setFechaIngreso(sc.nextLine());
         cont.almacenarProfesional(profe);
     }
 
@@ -105,9 +105,9 @@ public class Principal {
         Administrativo admin = new Administrativo();
         addUsuarioData(admin, sc);
         System.out.println("Ingresar area");
-        admin.setArea(sc.next());
+        admin.setArea(sc.nextLine(), sc);
         System.out.println("Ingresar experiecia previa");
-        admin.setExpPrevia(sc.next());
+        admin.setExpPrevia(sc.nextLine());
         cont.almacenarAdministrativo(admin);
     }
 
@@ -118,15 +118,15 @@ public class Principal {
         System.out.println("Ingresar rut del cliente");
         capaci.setRutCliente(sc.nextInt());
         System.out.println("Ingresar lugar");
-        capaci.setLugar(sc.next());
+        capaci.setLugar(sc.nextLine(), sc);
         System.out.println("Ingresar día");
-        capaci.setDia(sc.next().toLowerCase());
+        capaci.setDia(sc.nextLine().toLowerCase());
         System.out.println("Ingresar hora");
-        capaci.setHora(sc.next());
+        capaci.setHora(sc.nextLine());
         System.out.println("Ingresar duración");
-        capaci.setDuracion(sc.next());
+        capaci.setDuracion(sc.nextLine());
         System.out.println("Ingresar cantidad de asistentes");
-        capaci.setCantAsist(sc.nextInt());
+        capaci.setCantAsist(sc.nextInt(), sc);
         cont.almacenarCapacitacion(capaci);
     }
 
@@ -144,6 +144,6 @@ public class Principal {
     public static void listUsuarioTipo(Contenedor cont, Scanner sc){
         do{
             System.out.println("Ingresar tipo de usuario");
-        }while (!cont.listarUsuariosPorTipo(sc.next()));
+        }while (!cont.listarUsuariosPorTipo(sc.nextLine()));
     }
 }
