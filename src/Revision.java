@@ -78,7 +78,7 @@ public class Revision {
             else {
                 System.out.println("Error, estado mal ingresado, debe ingresar un valor de 1 a 3");
                 System.out.println("1 (sin problemas), 2 (con observaciones), 3 (no aprueba)");
-                estado = sc.nextInt();
+                estado = Integer.parseInt(sc.nextLine());
             }
         }while(estado < 1 || estado > 3);
     }

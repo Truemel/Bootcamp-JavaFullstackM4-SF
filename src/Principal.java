@@ -4,7 +4,7 @@ public class Principal {
 
     public static void main(String[] args) {
         Contenedor contenedor = new Contenedor();
-        Scanner sc = new Scanner(System.in).useDelimiter("\n");
+        Scanner sc = new Scanner(System.in);
         menu(sc, contenedor);
         sc.close();
     }
@@ -22,7 +22,7 @@ public class Principal {
             System.out.println("(7) Listar usuarios por tipo");
             System.out.println("(8) Listar capacitaciones");
             System.out.println("(0) Salir");
-            switch (choice = sc.nextInt()){
+            switch (choice = Integer.parseInt(sc.nextLine())){
                 case 0: {
                     System.out.println("Bye");
                     break;
@@ -64,16 +64,16 @@ public class Principal {
         System.out.println("Ingresar fecha de nacimiento");
         user.setFechaNaci(sc.nextLine(), sc);
         System.out.println("Ingresar run del usuario");
-        user.setRun(sc.nextInt());
+        user.setRun(Integer.parseInt(sc.nextLine()));
     }
 
     public static void addCliente(Contenedor cont, Scanner sc){
         Cliente cliente = new Cliente();
         addUsuarioData(cliente, sc);
         System.out.println("Ingresar edad");
-        cliente.setEdad(sc.nextInt(), sc);
+        cliente.setEdad(Integer.parseInt(sc.nextLine()), sc);
         System.out.println("Ingresar rut cliente");
-        cliente.setRut(sc.nextInt());
+        cliente.setRut(Integer.parseInt(sc.nextLine()));
         System.out.println("Ingresar nombres del cliente");
         cliente.setNombres(sc.nextLine(), sc);
         System.out.println("Ingresar apellidos del cliente");
@@ -85,9 +85,9 @@ public class Principal {
         System.out.println("Ingresar afp");
         cliente.setAfp(sc.nextLine());
         System.out.println("Ingresar sistema de salud (1) Fonasa, (2) Isapre");
-        cliente.setSysSalud(sc.nextInt(), sc);
+        cliente.setSysSalud(Integer.parseInt(sc.nextLine()), sc);
         System.out.println("Ingresar telefono");
-        cliente.setTelefono(sc.nextInt());
+        cliente.setTelefono(Integer.parseInt(sc.nextLine()));
         cont.almacenarCliente(cliente);
     }
 
@@ -114,9 +114,9 @@ public class Principal {
     public static void addCapaci(Contenedor cont, Scanner sc){
         Capacitacion capaci = new Capacitacion();
         System.out.println("Ingresar identificador");
-        capaci.setIdent(sc.nextInt());
+        capaci.setIdent(Integer.parseInt(sc.nextLine()));
         System.out.println("Ingresar rut del cliente");
-        capaci.setRutCliente(sc.nextInt());
+        capaci.setRutCliente(Integer.parseInt(sc.nextLine()));
         System.out.println("Ingresar lugar");
         capaci.setLugar(sc.nextLine(), sc);
         System.out.println("Ingresar día");
@@ -126,7 +126,7 @@ public class Principal {
         System.out.println("Ingresar duración");
         capaci.setDuracion(sc.nextLine());
         System.out.println("Ingresar cantidad de asistentes");
-        capaci.setCantAsist(sc.nextInt(), sc);
+        capaci.setCantAsist(Integer.parseInt(sc.nextLine()), sc);
         cont.almacenarCapacitacion(capaci);
     }
 
@@ -134,7 +134,7 @@ public class Principal {
         int rut = 0;
         do{
             System.out.println("Ingresa rut del usuario a eliminar");
-            rut = sc.nextInt();
+            rut = Integer.parseInt(sc.nextLine());
             if(rut >= 99999999)
                 System.out.println("Error, rut debe ser menor a 99.999.999");
         }while (rut >= 99999999);

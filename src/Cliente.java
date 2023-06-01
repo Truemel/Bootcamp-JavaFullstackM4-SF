@@ -76,7 +76,7 @@ public class Cliente extends Usuario {
                 this.sysSalud = sysSalud;
             else {
                 System.out.println("Error, sistema salud mal ingresado, valor debe ser 1 (fonasa) o 2 (isapre)");
-                sysSalud = sc.nextInt();
+                sysSalud = Integer.parseInt(sc.nextLine());
             }
         }while(sysSalud != 1 && sysSalud != 2);
     }
@@ -162,7 +162,7 @@ public class Cliente extends Usuario {
             else {
                 System.out.println("Error, edad mal ingresada, valor debe estar entre 0 y 149");
                 //this.edad = 1;
-                edad = sc.nextInt();
+                edad = Integer.parseInt(sc.nextLine());
             }
         }while(edad < 0 || edad >= 150);
     }

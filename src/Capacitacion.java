@@ -116,7 +116,7 @@ public class Capacitacion {
                 this.cantAsist = cantAsist;
             else {
                 System.out.println("Error, cantidad de asistentes mal ingresada, valor debe ser menor a 1000");
-                cantAsist = sc.nextInt();
+                cantAsist = Integer.parseInt(sc.nextLine());
             }
         }while (cantAsist >= 1000);
     }
